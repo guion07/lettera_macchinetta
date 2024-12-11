@@ -36,6 +36,35 @@
             margin-top: 20px;
             text-align: right;
         }
+
+        .pulsante {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .pulsante button {
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .pulsante button:hover {
+            background-color: #0056b3;
+        }
+
+        .incisiva {
+            background-color: yellow;
+            font-weight: bold;
+            font-size: 18px;
+            transition: font-size 0.3s ease, background-color 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -48,7 +77,7 @@
 
     <p>Abbiamo sopportato a lungo la carenza di opzioni rapide e accessibili per soddisfare le nostre necessità alimentari durante la giornata scolastica. La frustrazione cresce ogni giorno di più, e devo avvertire che questo malcontento non rimarrà un semplice sfogo verbale. Un numero sempre maggiore di studenti sta iniziando a rendersi conto che questa mancanza non è solo una disattenzione, ma una chiara negligenza nei confronti del benessere di tutti.</p>
 
-    <p>Se non verrà presa in considerazione seriamente questa proposta, ci riserviamo il diritto di intraprendere azioni che potrebbero rendere la situazione difficile da gestire. Non sottovalutate l’importanza di questo cambiamento, perché la pazienza ha un limite.</p>
+    <p>Se non verrà presa in considerazione seriamente questa proposta, <span id="frase-incisiva" class="incisiva">ci riserviamo il diritto di intraprendere azioni che potrebbero rendere la situazione difficile da gestire.</span> Non sottovalutate l’importanza di questo cambiamento, perché la pazienza ha un limite.</p>
 
     <p>Mi aspetto una risposta immediata e un'azione concreta. Non rimarrò con le mani in mano mentre la nostra richiesta viene ignorata ancora una volta.</p>
 
@@ -56,7 +85,48 @@
         <p>Con rispetto,</p>
         <p>[Nome dello Studente]</p>
     </div>
+
+    <div class="pulsante">
+        <button type="button" onclick="ingrandisciFrase()">Ingrandisci Frase</button>
+        <button type="button" onclick="riduciFrase()">Riduci Frase</button>
+    </div>
 </div>
+
+<script>
+    let dimensione = 18; // Dimensione iniziale della frase
+
+    // Funzione per ingrandire la frase
+    function ingrandisciFrase() {
+        // Otteniamo l'elemento con l'ID 'frase-incisiva'
+        const frase = document.getElementById('frase-incisiva');
+
+        // Aumentiamo la dimensione del testo ogni volta che il pulsante viene cliccato
+        dimensione += 2;
+        frase.style.fontSize = dimensione + 'px';
+
+        // Cambiamo lo sfondo per farlo risaltare ancora di più
+        if (dimensione >= 30) {
+            frase.style.backgroundColor = '#ffcc00'; // Cambia lo sfondo quando diventa grande
+        }
+    }
+
+    // Funzione per ridurre la frase
+    function riduciFrase() {
+        // Otteniamo l'elemento con l'ID 'frase-incisiva'
+        const frase = document.getElementById('frase-incisiva');
+
+        // Riduciamo la dimensione del testo ogni volta che il pulsante viene cliccato
+        if (dimensione > 18) { // Non permettiamo che la dimensione diventi troppo piccola
+            dimensione -= 2;
+            frase.style.fontSize = dimensione + 'px';
+        }
+
+        // Reset dello sfondo quando la frase si riduce
+        if (dimensione < 30) {
+            frase.style.backgroundColor = 'yellow'; // Torna al colore giallo iniziale
+        }
+    }
+</script>
 
 </body>
 </html>
